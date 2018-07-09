@@ -1,6 +1,6 @@
 package br.com.philipesantos.sortingservice.operations;
 
-public class SwapOperation implements Operation {
+public class SwapOperation implements ExecutableOperation {
 	
 	private int indexSwapped;
 	private int indexSwappedBy;

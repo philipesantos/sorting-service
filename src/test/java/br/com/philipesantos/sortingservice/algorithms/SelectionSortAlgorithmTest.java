@@ -7,14 +7,15 @@ import java.util.List;
 
 import org.junit.Test;
 
+import br.com.philipesantos.sortingservice.operations.CompareOperation;
 import br.com.philipesantos.sortingservice.operations.Operation;
 import br.com.philipesantos.sortingservice.operations.SwapOperation;
 
 public class SelectionSortAlgorithmTest {
 	@Test
 	public void doesItReturnTheNumbersInCorrectOrder() {
-		Integer[] numbers = new Integer[] { 7, 3, 5, 1, 4, 2, 6, 8 };
-		Integer[] expectedNumbers = new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8 };
+		Integer[] numbers = new Integer[] { 5, 2, 1, 4, 3 };
+		Integer[] expectedNumbers = new Integer[] { 1, 2, 3, 4, 5 };
 		SortAlgorithm sortingAlgorithm = new SelectionSortAlgorithm();
 		sortingAlgorithm.sort(numbers);
 		assertArrayEquals(expectedNumbers, numbers);
@@ -22,24 +23,36 @@ public class SelectionSortAlgorithmTest {
 	
 	@Test
 	public void doesItReturnTheCorrectOperations() {
-		Integer[] unsortedNumbers = new Integer[] { 7, 3, 5, 1, 4, 2, 6, 8 };
+		Integer[] unsortedNumbers = new Integer[] { 5, 2, 1, 4, 3 };
 		SortAlgorithm sortingAlgorithm = new SelectionSortAlgorithm();
 		/*
-		 * 7, 3, 5, 1, 4, 2, 6, 8 | Initial state
-		 * 1, 3, 5, 7, 4, 2, 6, 8 | 0 <=> 3
-		 * 1, 2, 5, 7, 4, 3, 6, 8 | 1 <=> 5
-		 * 1, 2, 3, 7, 4, 5, 6, 8 | 2 <=> 5
-		 * 1, 2, 3, 4, 7, 5, 6, 8 | 3 <=> 4
-		 * 1, 2, 3, 4, 5, 7, 6, 8 | 4 <=> 5
-		 * 1, 2, 3, 4, 5, 6, 7, 8 | 5 <=> 6 
-		 */
+		 * 5, 2, 1, 4, 3 | Initial state
+		 * 5, 2, 1, 4, 3 | COMPARE: (1, 0)
+		 * 5, 2, 1, 4, 3 | COMPARE: (2, 1)
+		 * 5, 2, 1, 4, 3 | COMPARE: (3, 2)
+		 * 5, 2, 1, 4, 3 | COMPARE: (4, 2)
+		 * 1, 2, 5, 4, 3 | SWAP: (0, 2)
+		 * 1, 2, 5, 4, 3 | COMPARE: (2, 1)
+		 * 1, 2, 5, 4, 3 | COMPARE: (3, 1)
+		 * 1, 2, 5, 4, 3 | COMPARE: (4, 1)
+		 * 1, 2, 5, 4, 3 | COMPARE: (3, 2)
+		 * 1, 2, 5, 4, 3 | COMPARE: (4, 3)
+		 * 1, 2, 3, 4, 5 | SWAP: (4, 2)
+		 * 1, 2, 3, 4, 5 | COMPARE: (3, 4)
+		 */		
 		List<Operation> expectedOperations = new ArrayList<>();
-		expectedOperations.add(new SwapOperation(0, 3));
-		expectedOperations.add(new SwapOperation(1, 5));
-		expectedOperations.add(new SwapOperation(2, 5));
-		expectedOperations.add(new SwapOperation(3, 4));
-		expectedOperations.add(new SwapOperation(4, 5));
-		expectedOperations.add(new SwapOperation(5, 6));
+		expectedOperations.add(new CompareOperation(1, 0));
+		expectedOperations.add(new CompareOperation(2, 1));
+		expectedOperations.add(new CompareOperation(3, 2));
+		expectedOperations.add(new CompareOperation(4, 2));
+		expectedOperations.add(new SwapOperation(0, 2));
+		expectedOperations.add(new CompareOperation(2, 1));
+		expectedOperations.add(new CompareOperation(3, 1));
+		expectedOperations.add(new CompareOperation(4, 1));
+		expectedOperations.add(new CompareOperation(3, 2));
+		expectedOperations.add(new CompareOperation(4, 3));
+		expectedOperations.add(new SwapOperation(4, 2));
+		expectedOperations.add(new CompareOperation(3, 4));
 		List<Operation> operations = sortingAlgorithm.sort(unsortedNumbers);
 		assertArrayEquals(expectedOperations.toArray(), operations.toArray());
 	}
