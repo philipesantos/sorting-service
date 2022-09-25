@@ -2,14 +2,23 @@ package br.com.philipesantos.sortingservice.algorithms;
 
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class SortAlgorithmFactory {
+
+	private final List<SortAlgorithm> sortAlgorithms;
+
+	public SortAlgorithmFactory(List<SortAlgorithm> sortAlgorithms) {
+		this.sortAlgorithms = sortAlgorithms;
+	}
+
 	public SortAlgorithm create(String algorithmName) {
-		return switch (algorithmName.toUpperCase()) {
-			case "BUBBLE_SORT" -> new BubbleSortAlgorithm();
-			case "INSERTION_SORT" -> new InsertionSortAlgorithm();
-			case "SELECTION_SORT" -> new SelectionSortAlgorithm();
-			default -> throw new InvalidSortAlgorithmException(algorithmName);
-		};
+		for (SortAlgorithm sortAlgorithm : this.sortAlgorithms) {
+			if (sortAlgorithm.isNamed(algorithmName)) {
+				return sortAlgorithm;
+			}
+		}
+		throw new InvalidSortAlgorithmException(algorithmName);
 	}
 }
