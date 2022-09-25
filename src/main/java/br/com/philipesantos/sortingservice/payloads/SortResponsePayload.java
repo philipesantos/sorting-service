@@ -1,8 +1,8 @@
 package br.com.philipesantos.sortingservice.payloads;
 
-import java.util.List;
-
 import br.com.philipesantos.sortingservice.operations.Operation;
+
+import java.util.List;
 
 public class SortResponsePayload {
 	

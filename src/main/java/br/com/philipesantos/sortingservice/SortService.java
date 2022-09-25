@@ -1,15 +1,14 @@
 package br.com.philipesantos.sortingservice;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import br.com.philipesantos.sortingservice.algorithms.SortAlgorithm;
 import br.com.philipesantos.sortingservice.algorithms.SortAlgorithmFactory;
 import br.com.philipesantos.sortingservice.operations.Operation;
 import br.com.philipesantos.sortingservice.payloads.SortRequestPayload;
 import br.com.philipesantos.sortingservice.payloads.SortResponsePayload;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class SortService {

@@ -1,15 +1,14 @@
 package br.com.philipesantos.sortingservice.algorithms;
 
-import static org.junit.Assert.assertArrayEquals;
+import br.com.philipesantos.sortingservice.operations.CompareOperation;
+import br.com.philipesantos.sortingservice.operations.Operation;
+import br.com.philipesantos.sortingservice.operations.SwapOperation;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
-
-import br.com.philipesantos.sortingservice.operations.CompareOperation;
-import br.com.philipesantos.sortingservice.operations.Operation;
-import br.com.philipesantos.sortingservice.operations.SwapOperation;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class SelectionSortAlgorithmTest {
 	@Test
