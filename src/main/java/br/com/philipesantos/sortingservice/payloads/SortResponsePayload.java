@@ -6,9 +6,9 @@ import java.util.List;
 
 public class SortResponsePayload {
 	
-	private Integer[] numbers;
-	private Integer[] sortedNumbers;
-	private List<Operation> operations;
+	private final Integer[] numbers;
+	private final Integer[] sortedNumbers;
+	private final List<Operation> operations;
 	
 	public SortResponsePayload(Integer[] numbers, Integer[] sortedNumbers, List<Operation> operations) {
 		this.numbers = numbers;

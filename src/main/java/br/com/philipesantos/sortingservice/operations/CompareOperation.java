@@ -1,39 +1,37 @@
 package br.com.philipesantos.sortingservice.operations;
 
 public class CompareOperation implements Operation {
-	
-	private int indexCompared;
-	private int indexComparedWith;
-	
+
+	private final int indexCompared;
+	private final int indexComparedWith;
+
 	public CompareOperation(int indexCompared, int indexComparedWith) {
 		this.indexCompared = indexCompared;
 		this.indexComparedWith = indexComparedWith;
 	}
-	
-	public String getType() {
-		return "COMPARE";
-	}
-	
+
 	public int getIndexCompared() {
 		return indexCompared;
 	}
-	
+
 	public int getIndexComparedWith() {
 		return indexComparedWith;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof CompareOperation)) {
+		if (!(obj instanceof CompareOperation anotherCompare)) {
 			return false;
 		}
-		CompareOperation anotherCompare = (CompareOperation) obj;
-		return (this.indexCompared == anotherCompare.indexCompared && this.indexComparedWith == anotherCompare.indexComparedWith) ||
-				(this.indexCompared == anotherCompare.indexComparedWith && this.indexComparedWith == anotherCompare.indexCompared);
+		boolean equalsSamePosition = this.indexCompared == anotherCompare.indexCompared &&
+				this.indexComparedWith == anotherCompare.indexComparedWith;
+		boolean equalsDifferentPosition = this.indexCompared == anotherCompare.indexComparedWith &&
+				this.indexComparedWith == anotherCompare.indexCompared;
+		return equalsSamePosition || equalsDifferentPosition;
 	}
-	
+
 	@Override
 	public String toString() {
-		return this.getType() + " (" + this.indexCompared + ", " + this.indexComparedWith + ")";
+		return this.getClass().getSimpleName() + " (" + this.indexCompared + ", " + this.indexComparedWith + ")";
 	}
 }

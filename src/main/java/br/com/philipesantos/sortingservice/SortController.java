@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/sort")
 public class SortController {
 	
-	private SortService sortBusiness;
+	private final SortService sortBusiness;
 
 	@Autowired
 	public SortController(SortService sortBusiness) {

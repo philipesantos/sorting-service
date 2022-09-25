@@ -2,16 +2,12 @@ package br.com.philipesantos.sortingservice.operations;
 
 public class SwapOperation implements ExecutableOperation {
 	
-	private int indexSwapped;
-	private int indexSwappedBy;
+	private final int indexSwapped;
+	private final int indexSwappedBy;
 	
 	public SwapOperation(int indexSwapped, int indexSwappedBy) {
 		this.indexSwapped = indexSwapped;
 		this.indexSwappedBy = indexSwappedBy;
-	}
-	
-	public String getType() {
-		return "SWAP";
 	}
 	
 	public int getIndexSwapped() {
@@ -31,16 +27,18 @@ public class SwapOperation implements ExecutableOperation {
 	
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof SwapOperation)) {
+		if (!(obj instanceof SwapOperation anotherSwap)) {
 			return false;
 		}
-		SwapOperation anotherSwap = (SwapOperation) obj;
-		return (this.indexSwapped == anotherSwap.indexSwapped && this.indexSwappedBy == anotherSwap.indexSwappedBy) ||
-				(this.indexSwapped == anotherSwap.indexSwappedBy && this.indexSwappedBy == anotherSwap.indexSwapped);
+		boolean equalsSamePosition = this.indexSwapped == anotherSwap.indexSwapped &&
+				this.indexSwappedBy == anotherSwap.indexSwappedBy;
+		boolean equalsDifferentPosition = this.indexSwapped == anotherSwap.indexSwappedBy &&
+				this.indexSwappedBy == anotherSwap.indexSwapped;
+		return equalsSamePosition || equalsDifferentPosition;
 	}
 	
 	@Override
 	public String toString() {
-		return this.getType() + " (" + this.indexSwapped + ", " + this.indexSwappedBy + ")";
+		return this.getClass().getSimpleName() + " (" + this.indexSwapped + ", " + this.indexSwappedBy + ")";
 	}
 }

@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class SortService {
 
-	private SortAlgorithmFactory sortAlgorithmFactory;
+	private final SortAlgorithmFactory sortAlgorithmFactory;
 
 	@Autowired
 	public SortService(SortAlgorithmFactory sortAlgorithmFactory) {
