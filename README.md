@@ -6,6 +6,7 @@ It returns not only the array of ordered numbers but also the steps that were pe
 - BUBBLE_SORT
 - INSERTION_SORT
 - SELECTION_SORT
+- QUICK_SORT
 
 ### Input:
 ```JSON
